@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center mt-5">
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <div class="alert alert-danger" *ngIf="form.errors">
+      Invalid Username or Password. Please Try again.
+    </div>
+    <div class="form-group mb-3">
+      <label for="user_email">Email address</label>
+      <input
+        type="text"
+        class="form-control mb-3"
+        id="user_email"
+        placeholder="Enter email"
+        formControlName="username"
+      />
+
+      <!-- <div *ngIf="username?.invalid && (username?.touched || username?.dirty)">
+        <div *ngIf="username?.errors?.required" class="alert alert-danger">
+          Username Required.
+        </div>
+      </div> -->
+
+      <div *ngIf="signup.username.pending">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+      </div>
+      <div
+        *ngIf="
+          (signup.username.touched || signup.username.dirty) &&
+          signup.username.invalid
+        "
+      >
+        <div
+          class="alert alert-danger mb-3"
+          *ngIf="signup.username.errors?.required"
+        >
+          Email Required.
+        </div>
+        <div
+          class="alert alert-danger mb-3"
+          *ngIf="signup.username.errors?.email"
+        >
+          Enter a valid Email Address.
+        </div>
+        <div
+          class="alert alert-danger mb-3"
+          *ngIf="signup.username.errors?.cannotContainSpace"
+        >
+          Cannot contain spaces in Email Address.
+        </div>
+        <div
+          class="alert alert-danger mb-3"
+          *ngIf="signup.username.errors?.shouldBeUnique"
+        >
+          Username is already taken.
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="user_password">Password</label>
+      <input
+        type="password"
+        class="form-control mb-3"
+        id="user_password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div
+        class="alert alert-danger mb-3"
+        *ngIf="
+          (signup.password.touched || signup.password.dirty) &&
+          signup.password.invalid &&
+          signup.password.errors?.required
+        "
+      >
+        Password Required.
+      </div>
+      <div
+        class="alert alert-danger mb-3"
+        *ngIf="
+          (signup.password.touched || signup.password.dirty) &&
+          signup.password.invalid &&
+          signup.password.errors?.invalidPassword
+        "
+      >
+        Password should have minimum 8 characters, at least 1 uppercase letter,
+        1 lowercase letter and 1 number.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Signup</button>
+  </form>
+</div>

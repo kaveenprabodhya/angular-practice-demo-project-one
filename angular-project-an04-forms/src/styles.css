@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+body {
+  padding: 20px;
+}
+
+form {
+  width: 48%;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border: 2px solid red;
+}

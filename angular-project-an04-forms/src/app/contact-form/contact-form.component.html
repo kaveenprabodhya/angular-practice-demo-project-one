@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-center">
+  <form class="mt-5" #f="ngForm" (ngSubmit)="submit(f)">
+    <!-- <div ngModelGroup="contact" #contact="ngModelGroup"> -->
+    <!-- <div *ngIf="firstName.touched && !contact.valid">....</div> -->
+
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        name="firstName"
+        class="form-control"
+        [(ngModel)]="firstName"
+        #fName="ngModel"
+        (change)="log(fName)"
+        minlength="3"
+        maxlength="10"
+        required
+      />
+      <div
+        class="mt-2 alert alert-danger"
+        *ngIf="fName.invalid && (fName.touched || fName.dirty)"
+      >
+        <div *ngIf="fName.errors?.required">Firstname is required</div>
+        <div *ngIf="fName.errors?.minlength">
+          FirstName should be minimum
+          {{ fName.errors!.minlength.requiredLength }} charactors
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+
+    <div class="mb-3">
+      <label for="comment" class="form-label">Comment</label>
+      <textarea
+        class="form-control"
+        id="comment"
+        name="comment"
+        rows="3"
+        [(ngModel)]="model.comment"
+      ></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <input
+          type="checkbox"
+          name="isSubscribed"
+          [(ngModel)]="model.isSubscribed"
+        />
+        Subscribing to mailing list.
+      </label>
+    </div>
+
+    <div class="mb-3">{{ f.value | json }}</div>
+
+    <div class="form-group mb-3">
+      <label for="contactMethod" class="form-label">Contact Method</label>
+      <select
+        id="contactMethod"
+        class="form-select"
+        name="contactMethod"
+        [(ngModel)]="model.contactMethod"
+        multiple
+      >
+        <option *ngFor="let contact of contactMethods" [value]="contact.id">
+          {{ contact.name }}
+        </option>
+        <!-- <option *ngFor="let contact of contactMethods" [ngValue]="contact">
+          {{ contact.name }}
+        </option> -->
+      </select>
+    </div>
+
+    <!-- {{ model | json }} -->
+
+    <div class="form-check mb-3">
+      <input
+        ngModel
+        name="checkEmail"
+        class="form-check-input"
+        type="checkbox"
+        value="1"
+        id="check"
+      />
+      <label class="form-check-label" for="check"> Email </label>
+    </div>
+    <div class="form-check mb-3">
+      <input
+        ngModel
+        name="checkMobile"
+        class="form-check-input"
+        type="checkbox"
+        value="2"
+        id="check2"
+      />
+      <label class="form-check-label" for="check2"> Mobile </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+      Save
+    </button>
+  </form>
+</div>

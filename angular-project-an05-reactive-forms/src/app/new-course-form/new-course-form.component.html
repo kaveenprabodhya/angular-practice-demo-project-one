@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center">
+  <form>
+    <div class="form-gourp mt-3 mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Course Name..."
+        (keyup.enter)="addTopic(topic)"
+        #topic
+      />
+    </div>
+    <div>
+      <ul class="list-group">
+        <li
+          *ngFor="let topic of topics.controls"
+          (click)="removeTopic(topic)"
+          class="list-group-item"
+        >
+          {{ topic.value }}
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>

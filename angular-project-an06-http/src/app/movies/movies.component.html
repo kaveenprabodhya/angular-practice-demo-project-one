@@ -1,0 +1,78 @@
+<form [formGroup]="form" (ngSubmit)="createMovie()">
+  <div class="form-group mb-3">
+    <input type="text" [hidden]="true" />
+    <label class="form-label">Enter Movie Name</label>
+    <input type="text" class="form-control" formControlName="title" />
+    <div
+      *ngIf="
+        (submitted || getMovieControls.title.touched) &&
+        getMovieControls.title?.errors
+      "
+      class="alert alert-danger mt-2"
+    >
+      Title is Required
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label for="genreID" class="form-label">Genre</label>
+    <select class="form-select" formControlName="genreId" id="genreID">
+      <option [ngValue]="null" disabled>Choose your Genre</option>
+      <option [ngValue]="genre._id" *ngFor="let genre of genres">
+        {{ genre.name }}
+      </option>
+    </select>
+    <div
+      *ngIf="
+        (submitted || getMovieControls.genreId.dirty) &&
+        getMovieControls.genreId.invalid
+      "
+      class="alert alert-danger mt-2"
+    >
+      Genre is Required
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label class="form-label">Enter Number in Stock</label>
+    <input type="text" class="form-control" formControlName="numberInStock" />
+    <div
+      *ngIf="
+        (submitted || getMovieControls.numberInStock.touched) &&
+        getMovieControls.numberInStock?.errors
+      "
+      class="alert alert-danger mt-2"
+    >
+      Number in Stock is Required
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label class="form-label">Enter Daily Retnal Rate</label>
+    <input type="text" class="form-control" formControlName="dailyRentalRate" />
+    <div
+      *ngIf="
+        (submitted || getMovieControls.dailyRentalRate.touched) &&
+        getMovieControls.dailyRentalRate?.errors
+      "
+      class="alert alert-danger mt-2"
+    >
+      Daily Rental Rate is Required
+    </div>
+  </div>
+  <button class="btn btn-success" type="submit">Create Movie</button>
+</form>
+
+<div class="card mb-3 mt-3" *ngFor="let movie of movies">
+  <div class="card-header">
+    <h3>{{ movie.title + " " + movie._id }}</h3>
+  </div>
+  <div class="card-body">
+    <p>Genre Type: {{ movie.genre.name }}</p>
+    <p>Movies count in Stock: {{ movie.numberInStock }}</p>
+    <p>Daily Rental Rate: {{ movie.dailyRentalRate }}</p>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-danger m-2" (click)="deleteMovie(movie)">
+      Delete
+    </button>
+    <button class="btn btn-success m-2" (click)="updateMovie()">Update</button>
+  </div>
+</div>

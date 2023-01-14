@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+  <form @todosAnimation>
+    <h1>Todos</h1>
+    <div class="form-gourp mt-3 mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Item Name..."
+        (keyup.enter)="addItem(item)"
+        #item
+      />
+    </div>
+    <div>
+      <ul *ngIf="items" class="list-group">
+        <li
+          @todoAnimation
+          (@todoAnimation.start)="animationStarted($event)"
+          (@todoAnimation.done)="animationDone($event)"
+          *ngFor="let item of items"
+          (click)="removeItem(item)"
+          class="list-group-item"
+        >
+          {{ item }}
+        </li>
+        <!-- <li
+          *ngFor="let item of items"
+          (click)="removeItem(item)"
+          class="list-group-item"
+        >
+          {{ item }}
+        </li> -->
+      </ul>
+    </div>
+  </form>
+</div>

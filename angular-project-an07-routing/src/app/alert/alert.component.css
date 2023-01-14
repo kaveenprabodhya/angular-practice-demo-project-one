@@ -1,0 +1,7 @@
+.popup {
+  top: 50px;
+  left: 11.5%;
+  z-index: 3;
+  width: 77%;
+  position: fixed;
+}

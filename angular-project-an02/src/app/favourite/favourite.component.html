@@ -1,0 +1,20 @@
+<!-- <div>
+  <span
+    class="bi h2"
+    [class.bi-star-fill]="isSelected"
+    [class.bi-star]="!isSelected"
+    (click)="onClick()"
+  ></span>
+</div>
+ -->
+
+<div>
+  <span
+    class="bi h2"
+    [ngClass]="{
+      'bi-star-fill': isSelected,
+      'bi-star': !isSelected
+    }"
+    (click)="onClick()"
+  ></span>
+</div>

@@ -1,0 +1,13 @@
+<app-favourite
+  [is-favourite]="post.isFavourite"
+  (change)="onFavouriteChange($event)"
+></app-favourite>
+
+<app-panel>
+  <ng-container class="heading">Heading</ng-container>
+
+  <div class="body">
+    <h1>Body</h1>
+    <p>Some content here...</p>
+  </div>
+</app-panel>

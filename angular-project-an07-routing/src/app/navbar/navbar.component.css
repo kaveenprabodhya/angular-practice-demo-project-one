@@ -1,0 +1,10 @@
+.active-link {
+  color: black;
+  font-weight: 900;
+}
+
+.navbar-brand {
+  font-weight: bolder;
+  font-size: xx-large;
+  color: #2fb131;
+}

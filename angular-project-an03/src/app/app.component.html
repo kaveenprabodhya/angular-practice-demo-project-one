@@ -1,0 +1,103 @@
+<!-- first approach *ngIf -->
+<!-- <div *ngIf="courses.length > 0">list of courses</div>
+<div *ngIf="courses.length == 0">No courses yet</div> -->
+
+<!-- second approach of *ngIf -->
+<!-- <div *ngIf="courses.length > 0; then coursesList; else noCourses"></div>
+<ng-template #coursesList>List of Courses</ng-template>
+<ng-template #noCourses>No courses yet</ng-template> -->
+
+<!-- third approach of *ngIf -->
+
+<!-- <div [hidden]="courses.length == 0">List of Courses</div>
+<div [hidden]="courses.length > 0">No courses yet</div> -->
+
+<!-- ngSwitch -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="viewMode == 'map'"
+          (click)="viewMode = 'map'"
+          style="cursor: pointer"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="viewMode == 'list'"
+          (click)="viewMode = 'list'"
+          style="cursor: pointer"
+          >Features</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map view Content</div>
+  <div *ngSwitchCase="'list'">List view Content</div>
+  <div *ngSwitchDefault>Otherwise</div>
+</div> -->
+
+<!-- ngFor -->
+<button class="btn btn-primary" (click)="onAdd()">Add Course</button>
+<ul>
+  <li
+    style="margin: 8px"
+    *ngFor="let course of courses; index as i; even as isEven"
+  >
+    {{ i }} - {{ course.name }} <span *ngIf="isEven">Even</span>
+    <button
+      class="btn btn-sm btn-danger"
+      style="margin: 5px"
+      (click)="onRemove(course)"
+    >
+      Remove
+    </button>
+    <button class="btn btn-sm btn-success" (click)="onChange(course)">
+      Update
+    </button>
+  </li>
+</ul>
+
+<!-- ngStyle -->
+
+<!-- <button
+  class="btn btn-lg"
+  [style.backgroundColor]="canSave ? 'blue' : 'gray'"
+  [style.color]="canSave ? 'white' : 'black'"
+  [style.fontWeight]="canSave ? 'bold' : 'normal'"
+>
+  Save
+</button> -->
+
+<button
+  class="btn btn-lg"
+  [ngStyle]="{
+    backgroundColor: canSave ? 'blue' : 'gray',
+    color: canSave ? 'white' : 'black',
+    fontweight: canSave ? 'bold' : 'normal'
+  }"
+>
+  Save
+</button>
+
+<br />
+<!-- safe travel operator -->
+<!-- <span *ngIf="task.assignee">{{ task.assignee.name }}</span> -->
+<span>{{ task.assignee?.name }}</span>
+
+<br />
+<!-- custome derectives -->
+<!-- <input type="text" appInputFormat [format]="'uppercase'" /> -->
+<input type="text" [appInputFormat]="'uppercase'" />
+
+<br />
+<br />
+
+<zippy title="Shopping Details"> shopping details content </zippy>
